@@ -1,8 +1,7 @@
 /* 
   data source: 
-  https://www.yahoo.com/news/atticus-tops-baby-names-2015-124073377716.html
+  https://www.digmandarin.com/hsk-1-vocabulary-list.html
 */
-
 export default [
     {
       id: 0,
