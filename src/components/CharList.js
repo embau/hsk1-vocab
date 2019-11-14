@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 
-export default ({data, filterText, addFavorite}) => {
+export default ({data, filterText, addReview}) => {
 
-    const namesList = data
+    const charList = data
+    //filter results based on user input in search bar
     .filter(name => {
       return name.searchpy.toLowerCase().indexOf(filterText.toLowerCase()) >=0
     })
@@ -11,7 +12,7 @@ export default ({data, filterText, addFavorite}) => {
         <li 
         key={name.id} 
         className={name.tone}
-        onClick={() => addFavorite(name.id)}
+        onClick={() => addReview(name.id)}
         >
         {name.ccharacter}
         </li>
@@ -23,7 +24,7 @@ export default ({data, filterText, addFavorite}) => {
       <div>
 
         <ul>
-          {namesList}
+          {charList}
         </ul>
       </div>
       

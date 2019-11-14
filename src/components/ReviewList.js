@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 
-const ShortList = ({data, favorites, removeFavorite, showPinyin, hidePinyin, mousein, hovered}) => {
-    const namesList = favorites.map(id => {
+const ReviewList = ({data, review, removeReview, showPinyin, hidePinyin, mousein, hovered}) => {
+    const charList = review.map(id => {
         const { name, tone, ccharacter, pinyin } = data[id]
         if (mousein && hovered == id) {
+            //show pinyin when hovering over character in review list
         return (
             <li 
             key={id} 
             className={tone}
-            onClick={() => removeFavorite(id)}
+            onClick={() => removeReview(id)}
             onMouseEnter={() => showPinyin(pinyin, id)}
             onMouseLeave={() => hidePinyin(id)}
             >
@@ -17,12 +18,12 @@ const ShortList = ({data, favorites, removeFavorite, showPinyin, hidePinyin, mou
         )
         }
         else {
-            console.log('id:', hovered)
+            //otherwise just show character
             return (
                 <li 
                 key={id} 
                 className={tone}
-                onClick={() => removeFavorite(id)}
+                onClick={() => removeReview(id)}
                 onMouseEnter={() => showPinyin(pinyin, id)}
                 onMouseLeave={() => hidePinyin(id)}
                 >
@@ -32,10 +33,10 @@ const ShortList = ({data, favorites, removeFavorite, showPinyin, hidePinyin, mou
         }
     })
     return (
-        <div className="favorites">
+        <div className="review">
            <h4> Click on a character to add it to review list, then hover to see pinyin. Click on it again to remove from review list...</h4> 
            <ul>
-               {namesList}
+               {charList}
                
            </ul>
         </div>
@@ -43,4 +44,4 @@ const ShortList = ({data, favorites, removeFavorite, showPinyin, hidePinyin, mou
     )
 }
     
-  export default ShortList;
+  export default ReviewList;

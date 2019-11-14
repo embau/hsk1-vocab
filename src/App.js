@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import NamesList from './components/NamesList'
+import CharList from './components/CharList'
 import Credit from './components/Credit'
 import Search from './components/Search'
-import ShortList from './components/ShortList'
+import ReviewList from './components/ReviewList'
 import Tones from './components/Tones'
-import { tsConstructorType } from '@babel/types';
+
 
 
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       filterText: '',
-      favorites: [],
+      review: [],
       pytext: '',
       mousein: false,
       hovered: -1
@@ -26,31 +26,24 @@ class App extends React.Component {
     })
   }
 
-  addFavorite(id) {
-    var favList = this.state.favorites
-    if (favList.indexOf(id) == -1)
-    favList = this.state.favorites.concat([id])
+  addReview(id) {
+    var rList = this.state.review
+    if (rList.indexOf(id) == -1)
+    rList = this.state.review.concat([id])
     this.setState({
-      favorites: favList
+      review: rList
     })
-    favList.forEach(element => {
-      console.log('id:',element,' index:', favList.indexOf(element))
-    });
   }
-  removeFavorite(id) {
-    var favList = this.state.favorites;
-    var index = favList.indexOf(id);
-    console.log(index)
-    favList.splice(index,1)
+  removeReview(id) {
+    var rList = this.state.review;
+    var index = rList.indexOf(id);
+    rList.splice(index,1)
     this.setState({
-      favorites: favList
+      review: rList
     })
   }
 
   showPinyin(pinyin,id) {
-    console.log(pinyin)
-    console.log(id)
-    var favList = this.state.favorites;
     this.setState({
       pytext: pinyin,
       mousein: true,
@@ -74,20 +67,20 @@ class App extends React.Component {
            />
           <Tones />
           <main>
-            <ShortList 
-            favorites={this.state.favorites}
+            <ReviewList 
+            review={this.state.review}
             data={this.props.data}
-            removeFavorite={this.removeFavorite.bind(this)}
+            removeReview={this.removeReview.bind(this)}
             showPinyin={this.showPinyin.bind(this)}
             hidePinyin={this.hidePinyin.bind(this)}
             pytext={this.state.pytext}
             mousein={this.state.mousein}
             hovered={this.state.hovered}
             />
-            <NamesList 
+            <CharList 
             data={this.props.data}
             filterText={this.state.filterText}
-            addFavorite={this.addFavorite.bind(this)}
+            addReview={this.addReview.bind(this)}
             />
             <Credit />
           </main>
@@ -99,6 +92,3 @@ class App extends React.Component {
 
 
 export default App;
-
-//TODO:
-//nice styling
